@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Configuration
 @Component
@@ -77,7 +78,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     for (String privilege : privileges) {
       springAuthorities.add(new SimpleGrantedAuthority(privilege));
     }
-    return new User(accountInfo.getEmail(), null, springAuthorities);
+    return new User(accountInfo.getEmail(), UUID.randomUUID().toString(), springAuthorities);
   }
 
 }
